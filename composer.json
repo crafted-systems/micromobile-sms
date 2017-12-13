@@ -1,0 +1,31 @@
+{
+  "name": "crafted-systems/micromobile-sms",
+  "description": "A Laravel Package for Sending SMS using MicroMobile's SMS Gateway",
+  "license": "MIT",
+  "type": "library",
+  "require": {
+    "php": ">=5.6",
+    "illuminate/support": "5.*",
+    "mashape/unirest-php": "3.*"
+  },
+  "author": {
+    "name": "Crafted Systems ",
+    "email": "hello@crafted.co.ke"
+  },
+  "autoload": {
+    "psr-4": {
+      "CraftedSystems\\MicroMobileSMS\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "CraftedSystems\\MicroMobile\\MicroMobileSMSServiceProvider"
+      ],
+      "aliases": {
+        "MicroMobileSMS": "CraftedSystems\\MicroMobile\\Facades\\MicroMobileSMS"
+      }
+    }
+  },
+  "minimum-stability": "dev"
+}
