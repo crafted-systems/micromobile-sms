@@ -18,6 +18,12 @@ class MicroMobileSMSServiceProvider extends ServiceProvider
             __DIR__ . '/Config/micromobile.php' => config_path('micromobile.php'),
         ], 'micromobile_sms_config');
 
+        $this->app->singleton(MicroMobileSMS::class, function () {
+            return new MicroMobileSMS(config('micromobile'));
+        });
+
+        $this->app->alias(MicroMobileSMS::class, 'micromobile-sms');
+
     }
 
     /**
