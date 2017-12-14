@@ -57,9 +57,19 @@ class MicroMobileSMS
      * @param $recipient
      * @param $message
      * @return mixed
+     * @throws \Exception
      */
     public function send($recipient, $message)
     {
+        if (!is_string($message)) {
+
+            throw new \Exception('The Message Should be a string');
+        }
+
+        if (!is_string($recipient)) {
+            throw new \Exception('The Phone number should be a string');
+        }
+
         $endpoint = self::BASE_URL . 'sms/' . $this->settings->service_id . '/send';
 
         $headers = [
