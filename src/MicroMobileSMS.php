@@ -28,6 +28,13 @@ class MicroMobileSMS
     const GET_BALANCE_ENDPOINT = 'sms/balance';
 
     /**
+     * settings .
+     *
+     * @var array.
+     */
+    protected $settings;
+
+    /**
      * MicroMobileSMS constructor.
      * @param $settings
      * @throws \Exception
@@ -87,6 +94,16 @@ class MicroMobileSMS
         Request::auth($this->settings->username, $this->settings->password);
 
         return Request::get($endpoint, $headers)->body->balance;
+    }
+
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return mixed
+     */
+    public static function getDeliveryReport(\Illuminate\Http\Request $request)
+    {
+        return json_decode($request->getContent());
     }
 
 }
