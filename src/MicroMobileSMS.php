@@ -111,7 +111,7 @@ class MicroMobileSMS
      * @param \Illuminate\Http\Request $request
      * @return mixed
      */
-    public static function getDeliveryReport(\Illuminate\Http\Request $request)
+    public function getDeliveryReports(\Illuminate\Http\Request $request)
     {
         return json_decode($request->getContent());
     }
