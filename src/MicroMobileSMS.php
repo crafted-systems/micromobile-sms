@@ -13,12 +13,6 @@ use Unirest\Request\Body;
 
 class MicroMobileSMS
 {
-    /**
-     * Base URL.
-     *
-     * @var string
-     */
-    const BASE_URL = 'http://micromobile.co.ke:8098/mobi-text/api/';
 
     /**
      * Get Balance endpoint.
@@ -46,7 +40,8 @@ class MicroMobileSMS
         if (
             empty($this->settings->service_id) ||
             empty($this->settings->username) ||
-            empty($this->settings->password)
+            empty($this->settings->password) ||
+            empty($this->settings->base_url)
         ) {
             throw new \Exception('Please ensure that all MicroMobile configuration variables have been set.');
         }
@@ -70,7 +65,7 @@ class MicroMobileSMS
             throw new \Exception('The Phone number should be a string');
         }
 
-        $endpoint = self::BASE_URL . 'sms/' . $this->settings->service_id . '/send';
+        $endpoint = $this->settings->base_url . 'sms/' . $this->settings->service_id . '/send';
 
         $headers = [
             'Accept' => 'application/json',
@@ -99,7 +94,7 @@ class MicroMobileSMS
             'Accept' => 'application/json',
         ];
 
-        $endpoint = self::BASE_URL . self::GET_BALANCE_ENDPOINT;
+        $endpoint = $this->settings->base_url . self::GET_BALANCE_ENDPOINT;
 
         Request::auth($this->settings->username, $this->settings->password);
 
